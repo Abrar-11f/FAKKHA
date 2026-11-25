@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>فكّها | اشرح لي مفهومًا</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #16764b;
+  --deep: #124d35;
+  --mint: #eaf6ef;
+  --pale: #f7faf7;
+  --text: #193329;
+  --muted: #6d8177;
+  --line: #e2ece5;
+  --white: #fff;
+  --shadow: 0 15px 45px rgba(18,77,53,.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--pale);
+  color: var(--text);
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  line-height: 1.7;
+}
+
+body.english {
+  font-family: Inter, sans-serif;
+  direction: ltr;
+}
+
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  width: min(960px, 92%);
+  margin: auto;
+}
+
+/* Navigation */
+
+.header {
+  background: #ffffffeb;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--deep);
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: var(--green);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.lang {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 7px 12px;
+  color: var(--deep);
+  font-weight: 600;
+}
+
+/* Main */
+
+.main { padding: 35px 0 65px; }
+
+.heading {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.heading h1 {
+  font-size: 2rem;
+  color: var(--deep);
+  margin: 0 0 5px;
+}
+
+.heading p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Cards */
+
+.panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 23px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+}
+
+.field-title {
+  font-weight: 700;
+  color: var(--deep);
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.num {
+  width: 27px;
+  height: 27px;
+  border-radius: 9px;
+  background: var(--mint);
+  color: var(--green);
+  display: inline-grid;
+  place-items: center;
+  font-size: .88rem;
+}
+
+/* Subjects */
+
+.subjects {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 11px;
+}
+
+.subject {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 15px;
+  padding: 13px 10px;
+  text-align: center;
+  color: var(--text);
+  transition: .15s;
+}
+
+.subject:hover {
+  border-color: #9dcbb0;
+  background: #fbfefc;
+}
+
+.subject.active {
+  border-color: var(--green);
+  background: var(--mint);
+  box-shadow: 0 0 0 2px #16764b12;
+}
+
+.subject .emoji {
+  display: block;
+  font-size: 1.45rem;
+  margin-bottom: 3px;
+}
+
+.subject span:last-child {
+  font-size: .92rem;
+  font-weight: 600;
+}
+
+/* Concept input */
+
+.textarea {
+  width: 100%;
+  min-height: 125px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 15px;
+  background: #fcfefc;
+  color: var(--text);
+  outline: none;
+}
+
+.textarea:focus,
+.extra:focus {
+  border-color: #7fba97;
+  box-shadow: 0 0 0 3px #16764b12;
+}
+
+.counter {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: .82rem;
+  margin-top: 7px;
+}
+
+.sample {
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font-weight: 600;
+  padding: 0;
+}
+
+/* Options */
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.choice {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: white;
+  padding: 10px 15px;
+  color: var(--text);
+  font-weight: 500;
+  transition: .15s;
+}
+
+.choice:hover { border-color: #9dcbb0; }
+
+.choice.active {
+  border-color: var(--green);
+  background: var(--mint);
+  color: var(--deep);
+}
+
+/* Optional notes */
+
+.extra {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 12px 14px;
+  outline: none;
+  background: #fcfefc;
+}
+
+.note {
+  color: var(--muted);
+  font-size: .85rem;
+  margin: 8px 0 0;
+}
+
+/* Submit */
+
+.submit {
+  width: 100%;
+  border: 0;
+  border-radius: 15px;
+  background: var(--green);
+  color: white;
+  padding: 15px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 8px;
+  box-shadow: 0 9px 20px #16764b20;
+  transition: .18s;
+}
+
+.submit:hover {
+  background: var(--deep);
+  transform: translateY(-1px);
+}
+
+.saved {
+  font-size: .8rem;
+  color: var(--green);
+  text-align: center;
+  margin-top: 8px;
+  min-height: 22px;
+}
+
+/* Explanation result */
+
+.result {
+  display: none;
+  margin-top: 24px;
+  background: white;
+  border: 1px solid #d9e9df;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.result.show { display: block; }
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.result-head h2 {
+  margin: 0;
+  color: var(--deep);
+  font-size: 1.3rem;
+}
+
+.demo-label {
+  background: #fff6dc;
+  color: #8b650c;
+  padding: 5px 10px;
+  border-radius: 9px;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.result-body {
+  margin-top: 16px;
+  white-space: pre-wrap;
+  line-height: 1.9;
+}
+
+.result-body h3 {
+  font-size: 1.05rem;
+  color: var(--green);
+  margin: 15px 0 5px;
+}
+
+.result-body p { margin: 0 0 9px; }
+
+.result-body ul {
+  margin: 6px 0;
+  padding-inline-start: 22px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 17px;
+}
+
+.action {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 11px;
+  padding: 9px 13px;
+  color: var(--deep);
+  font-weight: 600;
+}
+
+.action.green {
+  background: var(--mint);
+  border-color: var(--mint);
+}
+
+.foot {
+  text-align: center;
+  color: var(--muted);
+  font-size: .85rem;
+  padding: 0 0 30px;
+}
+
+/* Mobile */
+
+@media(max-width:650px) {
+  .nav {
+    height: auto;
+    min-height: 66px;
+  }
+
+  .back { font-size: .88rem; }
+
+  .main { padding-top: 25px; }
+
+  .heading h1 { font-size: 1.65rem; }
+
+  .panel {
+    padding: 17px;
+    border-radius: 18px;
+  }
+
+  .subjects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+  }
+
+  .subject { padding: 12px 8px; }
+
+  .choices { gap: 8px; }
+
+  .choice {
+    padding: 9px 11px;
+    font-size: .9rem;
+  }
+
+  .result { padding: 18px; }
+
+  .result-head h2 { font-size: 1.15rem; }
+}
+
+body.english .brand-mark {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <span class="brand-mark">ف</span>
+      <span>فَكّها <small style="font-family:Inter,sans-serif;font-size:.78rem">| FAKKHA</small></span>
+    </a>
+
+    <div class="nav-right">
+      <a class="back" href="index.html"
+         data-ar="← الصفحة الرئيسية"
+         data-en="← Home">← الصفحة الرئيسية</a>
+
+      <button class="lang" id="langToggle" type="button">English</button>
+    </div>
+
+  </div>
+</header>
+
+<main class="container main">
+
+<div class="heading">
+  <h1 data-ar="خلّنا نفكّها مع بعض 🌱"
+      data-en="Let's break it down together 🌱">
+    خلّنا نفكّها مع بعض 🌱
+  </h1>
+
+  <p data-ar="اكتبي المفهوم وحددي الطريقة اللي تناسب فهمك."
+     data-en="Enter a concept and choose the explanation style that works for you.">
+    اكتبي المفهوم وحددي الطريقة اللي تناسب فهمك.
+  </p>
+</div>
+
+<form id="conceptForm">
+
+<!-- 1. Subject -->
+
+<section class="panel">
+
+  <h3 class="field-title">
+    <span class="num">1</span>
+    <span data-ar="وش المادة؟" data-en="Which subject?">وش المادة؟</span>
+  </h3>
+
+  <div class="subjects">
+
+    <button type="button" class="subject active" data-subject="programming">
+      <span class="emoji">💻</span>
+      <span data-ar="برمجة" data-en="Programming">برمجة</span>
+    </button>
+
+    <button type="button" class="subject" data-subject="math">
+      <span class="emoji">📐</span>
+      <span data-ar="رياضيات" data-en="Math">رياضيات</span>
+    </button>
+
+    <button type="button" class="subject" data-subject="networks">
+      <span class="emoji">🌐</span>
+      <span data-ar="شبكات" data-en="Networks">شبكات</span>
+    </button>
+
+    <button type="button" class="subject" data-subject="other">
+      <span class="emoji">📚</span>
+      <span data-ar="مادة أخرى" data-en="Other">مادة أخرى</span>
+    </button>
+
+  </div>
+</section>
+
+<!-- 2. Concept -->
+
+<section class="panel">
+
+  <h3 class="field-title">
+    <span class="num">2</span>
+    <span data-ar="اكتبي المفهوم اللي تبغين تفهمينه"
+          data-en="What concept would you like to understand?">
+      اكتبي المفهوم اللي تبغين تفهمينه
+    </span>
+  </h3>
+
+  <textarea
+    id="concept"
+    class="textarea"
+    maxlength="500"
+    placeholder="مثال: وش الفرق بين الـ Array والـ Linked List؟"
+    data-placeholder-ar="مثال: وش الفرق بين الـ Array والـ Linked List؟"
+    data-placeholder-en="Example: What is the difference between an Array and a Linked List?"></textarea>
+
+  <div class="counter">
+    <span id="counter">0 / 500</span>
+
+    <button type="button" class="sample" id="sample"
+      data-ar="جرّبي مثال"
+      data-en="Try an example">
+      جرّبي مثال
+    </button>
+  </div>
+
+</section>
+
+<!-- 3. Level -->
+
+<section class="panel">
+
+  <h3 class="field-title">
+    <span class="num">3</span>
+    <span data-ar="حددي مستوى الشرح"
+          data-en="Choose your explanation level">
+      حددي مستوى الشرح
+    </span>
+  </h3>
+
+  <div class="choices">
+
+    <button type="button" class="choice active" data-level="beginner"
+      data-ar="من الصفر 🌱" data-en="Beginner 🌱">
+      من الصفر 🌱
+    </button>
+
+    <button type="button" class="choice" data-level="intermediate"
+      data-ar="أعرف الأساسيات" data-en="I know the basics">
+      أعرف الأساسيات
+    </button>
+
+    <button type="button" class="choice" data-level="advanced"
+      data-ar="شرح أعمق" data-en="More advanced">
+      شرح أعمق
+    </button>
+
+  </div>
+</section>
+
+<!-- 4. Explanation style -->
+
+<section class="panel">
+
+  <h3 class="field-title">
+    <span class="num">4</span>
+    <span data-ar="كيف تحبين نشرحه؟"
+          data-en="How would you like it explained?">
+      كيف تحبين نشرحه؟
+    </span>
+  </h3>
+
+  <div class="choices">
+
+    <button type="button" class="choice active" data-style="simple"
+      data-ar="بأسلوب بسيط 💡" data-en="Simply 💡">
+      بأسلوب بسيط 💡
+    </button>
+
+    <button type="button" class="choice" data-style="example"
+      data-ar="بأمثلة واقعية 🧩" data-en="With real examples 🧩">
+      بأمثلة واقعية 🧩
+    </button>
+
+    <button type="button" class="choice" data-style="steps"
+      data-ar="خطوة بخطوة 🪜" data-en="Step by step 🪜">
+      خطوة بخطوة 🪜
+    </button>
+
+  </div>
+</section>
+
+<!-- 5. Optional -->
+
+<section class="panel">
+
+  <h3 class="field-title">
+    <span class="num">5</span>
+    <span data-ar="فيه شيء تبغين نراعيه؟ (اختياري)"
+          data-en="Anything else to consider? (Optional)">
+      فيه شيء تبغين نراعيه؟ (اختياري)
+    </span>
+  </h3>
+
+  <input
+    id="extra"
+    class="extra"
+    type="text"
+    maxlength="200"
+    placeholder="مثال: اشرح بدون مصطلحات كثيرة"
+    data-placeholder-ar="مثال: اشرح بدون مصطلحات كثيرة"
+    data-placeholder-en="Example: Avoid too many technical terms">
+
+  <p class="note"
+     data-ar="تقدرين تكتبين ملاحظة أو تتركينها فاضية."
+     data-en="Add a note or leave it blank.">
+    تقدرين تكتبين ملاحظة أو تتركينها فاضية.
+  </p>
+
+</section>
+
+<button type="submit" class="submit"
+  data-ar="فكّها لي ✨" data-en="Break it down ✨">
+  فكّها لي ✨
+</button>
+
+<div class="saved" id="savedMsg" aria-live="polite"></div>
+
+</form>
+
+<!-- Preview result -->
+
+<section class="result" id="result" aria-live="polite">
+
+  <div class="result-head">
+
+    <h2 data-ar="شرح المفهوم" data-en="Concept explanation">
+      شرح المفهوم
+    </h2>
+
+    <span class="demo-label"
+      data-ar="معاينة تجريبية — غير متصل بالذكاء الاصطناعي"
+      data-en="Demo preview — not connected to AI">
+      معاينة تجريبية — غير متصل بالذكاء الاصطناعي
+    </span>
+
+  </div>
+
+  <div class="result-body" id="resultBody"></div>
+
+  <div class="result-actions">
+
+    <button class="action green" type="button" id="copyBtn"
+      data-ar="نسخ الشرح" data-en="Copy explanation">
+      نسخ الشرح
+    </button>
+
+    <button class="action" type="button" id="resetBtn"
+      data-ar="مسح المدخلات" data-en="Clear form">
+      مسح المدخلات
+    </button>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot"
+  data-ar="فَكّها | مو لازم تفهمها من أول مرة، خلّنا نفكّها مع بعض."
+  data-en="FAKKHA | You don't have to get it the first time. Let's break it down together.">
+  فَكّها | مو لازم تفهمها من أول مرة، خلّنا نفكّها مع بعض.
+</footer>
+
+<script>
+
+const LANG_KEY = "fakkha-language";
+const SAVE_KEY = "fakkha-input-form";
+
+let language = localStorage.getItem(LANG_KEY) || "ar";
+let subject = "programming";
+let level = "beginner";
+let style = "simple";
+
+const $ = id => document.getElementById(id);
+
+/* Language */
+
+function applyLanguage(lang) {
+
+  language = lang;
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.body.classList.toggle("english", lang === "en");
+
+  document.querySelectorAll("[data-ar][data-en]").forEach(el => {
+
+    if (el.dataset.placeholderAr) {
+      el.placeholder = el.dataset[
+        lang === "ar" ? "placeholderAr" : "placeholderEn"
+      ];
+    } else {
+      el.innerHTML = el.dataset[lang];
+    }
+
+  });
+
+  $("langToggle").textContent = lang === "ar" ? "English" : "العربية";
+
+  localStorage.setItem(LANG_KEY, lang);
+}
+
+$("langToggle").addEventListener("click", () => {
+  applyLanguage(language === "ar" ? "en" : "ar");
+});
+
+/* Automatic saving */
+
+function persist() {
+
+  const state = {
+    subject,
+    level,
+    style,
+    concept: $("concept").value,
+    extra: $("extra").value
+  };
+
+  localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+
+  $("savedMsg").textContent =
+    language === "ar"
+      ? "تم الحفظ تلقائيًا ✓"
+      : "Saved automatically ✓";
+
+  setTimeout(() => {
+    $("savedMsg").textContent = "";
+  }, 1600);
+}
+
+/* Restore saved form */
+
+function restore() {
+
+  try {
+
+    const saved = JSON.parse(localStorage.getItem(SAVE_KEY) || "{}");
+
+    if (saved.subject) subject = saved.subject;
+    if (saved.level) level = saved.level;
+    if (saved.style) style = saved.style;
+
+    if (saved.concept) $("concept").value = saved.concept;
+    if (saved.extra) $("extra").value = saved.extra;
+
+  } catch (error) {
+    console.log("Could not restore saved data.");
+  }
+
+  setActive();
+}
+
+/* Selected options */
+
+function setActive() {
+
+  document.querySelectorAll(".subject").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.subject === subject
+    );
+  });
+
+  document.querySelectorAll("[data-level]").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.level === level
+    );
+  });
+
+  document.querySelectorAll("[data-style]").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.style === style
+    );
+  });
+}
+
+/* Subject selection */
+
+document.querySelectorAll(".subject").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    subject = button.dataset.subject;
+
+    setActive();
+    persist();
+
+  });
+
+});
+
+/* Level selection */
+
+document.querySelectorAll("[data-level]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    level = button.dataset.level;
+
+    setActive();
+    persist();
+
+  });
+
+});
+
+/* Explanation style */
+
+document.querySelectorAll("[data-style]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    style = button.dataset.style;
+
+    setActive();
+    persist();
+
+  });
+
+});
+
+/* Character counter */
+
+$("concept").addEventListener("input", () => {
+
+  $("counter").textContent =
+    $("concept").value.length + " / 500";
+
+  persist();
+
+});
+
+/* Additional note */
+
+$("extra").addEventListener("input", persist);
+
+/* Example button */
+
+$("sample").addEventListener("click", () => {
+
+  $("concept").value =
+    language === "ar"
+      ? "وش الفرق بين الـ Array والـ Linked List؟"
+      : "What is the difference between an Array and a Linked List?";
+
+  $("counter").textContent =
+    $("concept").value.length + " / 500";
+
+  persist();
+
+});
+
+/* Level descriptions */
+
+const levelText = {
+
+  beginner: {
+    ar: "من الصفر: نبدأ بالفكرة الأساسية ونشرح الكلمات المهمة بدون افتراض معرفة مسبقة.",
+    en: "Beginner: Start with the core idea and explain key terms without assuming prior knowledge."
+  },
+
+  intermediate: {
+    ar: "الأساسيات: نربط المفهوم بما تعرفينه ونضيف تفاصيل تساعدك على فهم طريقة عمله.",
+    en: "Intermediate: Connect the concept to what you know and add details about how it works."
+  },
+
+  advanced: {
+    ar: "شرح أعمق: نوضح التفاصيل والعلاقات والاستثناءات المهمة، مع استخدام المصطلحات المناسبة.",
+    en: "Advanced: Explore details, relationships, and important exceptions using relevant terminology."
+  }
+
+};
+
+/* Build demo explanation */
+
+function buildPreview(concept) {
+
+  const isAr = language === "ar";
+
+  const subjectName = {
+    programming: isAr ? "البرمجة" : "Programming",
+    math: isAr ? "الرياضيات" : "Math",
+    networks: isAr ? "الشبكات" : "Networks",
+    other: isAr ? "المادة الأخرى" : "Other"
+  }[subject];
+
+  const levelDescription = levelText[level][language];
+
+  let content = "";
+
+  /* Simple explanation */
+
+  if (style === "simple") {
+
+    content = isAr
+
+      ? `
+        <h3>الفكرة ببساطة</h3>
+
+        <p>
+          خلّنا نفهم <strong>${escapeHtml(concept)}</strong> على مهل.
+          الفكرة إننا نقسم المفهوم إلى أجزاء صغيرة،
+          ونفهم معنى كل جزء ثم نربطها ببعض.
+        </p>
+
+        <h3>كيف تستوعبينه؟</h3>
+
+        <p>${levelDescription}</p>
+
+        <p>
+          حاولي تشرحين المفهوم بكلماتك بعد القراءة؛
+          إذا قدرتِ، فهذا مؤشر إن الفكرة بدأت توضح.
+        </p>
+      `
+
+      : `
+        <h3>Simply put</h3>
+
+        <p>
+          Let's understand <strong>${escapeHtml(concept)}</strong>
+          one piece at a time. Break it into smaller parts,
+          understand each part, then connect them.
+        </p>
+
+        <h3>How to understand it</h3>
+
+        <p>${levelDescription}</p>
+
+        <p>
+          Try explaining it in your own words after reading.
+          If you can, the idea is becoming clearer.
+        </p>
+      `;
+  }
+
+  /* Real-life examples */
+
+  else if (style === "example") {
+
+    content = isAr
+
+      ? `
+        <h3>مثال من الواقع</h3>
+
+        <p>
+          تخيّلي موقفًا يوميًا قريبًا من فكرة
+          <strong>${escapeHtml(concept)}</strong>.
+          نستخدم المثال عشان نربط المفهوم النظري
+          بشيء مألوف، ثم نحدد وين يظهر المفهوم في المثال.
+        </p>
+
+        <h3>وش نلاحظ؟</h3>
+
+        <p>
+          ركّزي على الجزء من المثال اللي يمثّل المفهوم نفسه،
+          وبعدها قارني المثال بالتعريف في مادة ${subjectName}.
+        </p>
+
+        <p>${levelDescription}</p>
+      `
+
+      : `
+        <h3>Real-life example</h3>
+
+        <p>
+          Imagine an everyday situation related to
+          <strong>${escapeHtml(concept)}</strong>.
+          Use it to connect the theory to something familiar,
+          then identify where the concept appears.
+        </p>
+
+        <h3>What to notice</h3>
+
+        <p>
+          Focus on the part that represents the concept,
+          then compare it with the definition in ${subjectName}.
+        </p>
+
+        <p>${levelDescription}</p>
+      `;
+  }
+
+  /* Step-by-step explanation */
+
+  else {
+
+    content = isAr
+
+      ? `
+        <h3>نفكّها خطوة بخطوة</h3>
+
+        <ul>
+          <li>
+            <strong>1. الفكرة:</strong>
+            حددي وش يعني <strong>${escapeHtml(concept)}</strong>.
+          </li>
+
+          <li>
+            <strong>2. الأجزاء:</strong>
+            قسّميه إلى عناصر أو خطوات صغيرة.
+          </li>
+
+          <li>
+            <strong>3. الربط:</strong>
+            افهمي كيف ترتبط الأجزاء ببعض.
+          </li>
+
+          <li>
+            <strong>4. التطبيق:</strong>
+            جرّبي تطبيق الفكرة على مثال من ${subjectName}.
+          </li>
+        </ul>
+
+        <p>${levelDescription}</p>
+      `
+
+      : `
+        <h3>Step by step</h3>
+
+        <ul>
+          <li>
+            <strong>1. The idea:</strong>
+            Define <strong>${escapeHtml(concept)}</strong>.
+          </li>
+
+          <li>
+            <strong>2. Break it down:</strong>
+            Separate it into small parts or steps.
+          </li>
+
+          <li>
+            <strong>3. Connect:</strong>
+            Understand how the parts relate.
+          </li>
+
+          <li>
+            <strong>4. Apply:</strong>
+            Try it in an example from ${subjectName}.
+          </li>
+        </ul>
+
+        <p>${levelDescription}</p>
+      `;
+  }
+
+  /* Optional note */
+
+  if ($("extra").value.trim()) {
+
+    content += isAr
+
+      ? `
+        <h3>ملاحظتك</h3>
+        <p>${escapeHtml($("extra").value.trim())}</p>
+      `
+
+      : `
+        <h3>Your note</h3>
+        <p>${escapeHtml($("extra").value.trim())}</p>
+      `;
+  }
+
+  return content;
+}
+
+/* Prevent HTML injection */
+
+function escapeHtml(text) {
+
+  return text.replace(/[&<>"']/g, character => {
+
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[character];
+
+  });
+
+}
+
+/* Submit */
+
+$("conceptForm").addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const concept = $("concept").value.trim();
+
+  if (!concept) {
+
+    $("concept").focus();
+
+    $("concept").placeholder =
+      language === "ar"
+        ? "اكتبي المفهوم أولًا 🌱"
+        : "Enter a concept first 🌱";
+
+    return;
+  }
+
+  $("resultBody").innerHTML = buildPreview(concept);
+
+  $("result").classList.add("show");
+
+  $("result").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  persist();
+
+});
+
+/* Copy explanation */
+
+$("copyBtn").addEventListener("click", async () => {
+
+  const text = $("resultBody").innerText;
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    $("copyBtn").textContent =
+      language === "ar" ? "تم النسخ ✓" : "Copied ✓";
+
+    setTimeout(() => {
+
+      $("copyBtn").textContent =
+        language === "ar" ? "نسخ الشرح" : "Copy explanation";
+
+    }, 1500);
+
+  } catch {
+
+    $("copyBtn").textContent =
+      language === "ar"
+        ? "حددي النص لنسخه"
+        : "Select text to copy";
+
+  }
+
+});
+
+/* Clear form */
+
+$("resetBtn").addEventListener("click", () => {
+
+  const confirmed = confirm(
+    language === "ar"
+      ? "تبغين تمسحين كل المدخلات؟"
+      : "Clear all form inputs?"
+  );
+
+  if (!confirmed) return;
+
+  localStorage.removeItem(SAVE_KEY);
+
+  subject = "programming";
+  level = "beginner";
+  style = "simple";
+
+  $("concept").value = "";
+  $("extra").value = "";
+
+  $("counter").textContent = "0 / 500";
+
+  $("result").classList.remove("show");
+
+  setActive();
+
+  $("savedMsg").textContent =
+    language === "ar"
+      ? "تم مسح المدخلات"
+      : "Inputs cleared";
+
+});
+
+/* Initial setup */
+
+restore();
+
+$("counter").textContent =
+  $("concept").value.length + " / 500";
+
+applyLanguage(language);
+
+</script>
+
+</body>
+</html>
