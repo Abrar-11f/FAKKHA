@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>فكّها | FAKKHA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #16764b;
+  --deep: #124d35;
+  --mint: #eaf6ef;
+  --pale: #f7faf7;
+  --text: #193329;
+  --muted: #6d8177;
+  --line: #e2ece5;
+  --shadow: 0 18px 55px rgba(18,77,53,.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  background: var(--pale);
+  color: var(--text);
+  line-height: 1.75;
+}
+
+body.english {
+  font-family: Inter, sans-serif;
+  direction: ltr;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: auto;
+}
+
+/* Navbar */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,.93);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--deep);
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--green);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  box-shadow: 0 8px 20px #16764b2b;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #52675d;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-btn {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: var(--deep);
+  font-weight: 600;
+}
+
+.primary {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 20px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px #16764b20;
+  transition: .2s;
+}
+
+.primary:hover {
+  background: var(--deep);
+  transform: translateY(-2px);
+}
+
+/* Hero */
+
+.hero {
+  padding: 75px 0 60px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  background: var(--mint);
+  color: var(--green);
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  line-height: 1.3;
+  margin: 18px 0;
+  color: var(--deep);
+  letter-spacing: -1px;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  font-size: 1.12rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 0 25px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Previous AI illustration */
+
+.visual {
+  min-height: 390px;
+  background: #eaf5ed;
+  border: 1px solid #dcece1;
+  border-radius: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.circle {
+  width: 290px;
+  height: 290px;
+  border-radius: 50%;
+  background: #cde8d6;
+  position: absolute;
+}
+
+.ai-card {
+  width: 230px;
+  background: white;
+  border-radius: 25px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(18,77,53,.12);
+  border: 1px solid #edf3ee;
+}
+
+.brain {
+  width: 75px;
+  height: 75px;
+  background: var(--mint);
+  border-radius: 23px;
+  display: grid;
+  place-items: center;
+  font-size: 2.6rem;
+  margin: 0 auto 14px;
+}
+
+.ai-card h3 {
+  margin: 0;
+  color: var(--deep);
+  font-size: 1.25rem;
+}
+
+.ai-card p {
+  margin: 5px 0 15px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.mini-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.mini-line {
+  height: 8px;
+  border-radius: 20px;
+  background: #edf4ef;
+}
+
+.mini-line:nth-child(2) {
+  width: 80%;
+  margin: auto;
+}
+
+.mini-line:nth-child(3) {
+  width: 60%;
+  margin: auto;
+}
+
+.float-card {
+  position: absolute;
+  background: white;
+  padding: 12px 15px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(18,77,53,.1);
+  font-weight: 600;
+  font-size: .88rem;
+  color: var(--deep);
+  z-index: 3;
+}
+
+.float-one {
+  top: 50px;
+  right: 20px;
+}
+
+.float-two {
+  bottom: 48px;
+  left: 20px;
+}
+
+/* CTA - second section */
+
+.section {
+  padding: 45px 0;
+}
+
+.cta {
+  background: var(--deep);
+  color: white;
+  border-radius: 28px;
+  padding: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.cta h2 {
+  margin: 0 0 6px;
+  font-size: 1.8rem;
+}
+
+.cta p {
+  margin: 0;
+  color: #d3e8dc;
+}
+
+.cta .primary {
+  background: white;
+  color: var(--deep);
+  box-shadow: none;
+}
+
+/* How to use */
+
+.section-heading {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+
+.section-heading h2 {
+  font-size: 2rem;
+  color: var(--deep);
+  margin: 0 0 8px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.step {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 23px;
+  border-radius: 20px;
+  transition: .2s;
+}
+
+.step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+  background: var(--mint);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.step h3 {
+  margin: 12px 0 4px;
+  color: var(--deep);
+}
+
+.step p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Features */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.feature {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  transition: .2s;
+}
+
+.feature:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--mint);
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.feature h3 {
+  margin: 0 0 7px;
+  color: var(--deep);
+}
+
+.feature p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* Footer */
+
+.footer {
+  padding: 28px 0;
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+
+@media(max-width:850px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 45px;
+  }
+
+  .visual {
+    min-height: 350px;
+  }
+
+  .features,
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media(max-width:600px) {
+
+  .nav {
+    height: auto;
+    min-height: 68px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    padding: 4px 0;
+  }
+
+  .nav-actions {
+    gap: 7px;
+  }
+
+  .nav-actions .primary {
+    padding: 9px 12px;
+  }
+
+  .hero {
+    padding: 35px 0;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .visual {
+    min-height: 320px;
+    border-radius: 24px;
+  }
+
+  .circle {
+    width: 240px;
+    height: 240px;
+  }
+
+  .ai-card {
+    width: 210px;
+    padding: 20px;
+  }
+
+  .float-card {
+    font-size: .78rem;
+    padding: 9px 11px;
+  }
+
+  .float-one {
+    top: 30px;
+    right: 10px;
+  }
+
+  .float-two {
+    bottom: 28px;
+    left: 10px;
+  }
+
+  .features,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 32px 0;
+  }
+
+  .section-heading h2 {
+    font-size: 1.65rem;
+  }
+
+  .cta {
+    padding: 25px;
+  }
+
+  .cta h2 {
+    font-size: 1.5rem;
+  }
+}
+
+body.english .brand-mark {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<header class="header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <span class="brand-mark">ف</span>
+
+      <span>
+        فَكّها
+        <small style="font-family:Inter,sans-serif;font-size:.78rem">
+          | FAKKHA
+        </small>
+      </span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#features"
+         data-ar="مميزاتنا"
+         data-en="Features">
+        مميزاتنا
+      </a>
+
+      <a href="#how"
+         data-ar="كيف نستخدم فكّها؟"
+         data-en="How to use FAKKHA">
+        كيف نستخدم فكّها؟
+      </a>
+    </nav>
+
+    <div class="nav-actions">
+
+      <button class="lang-btn" id="langToggle" type="button">
+        English
+      </button>
+
+      <a class="primary" href="input.html"
+         data-ar="ابدأ الآن"
+         data-en="Get started">
+        ابدأ الآن
+      </a>
+
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<!-- Hero -->
+
+<section class="container hero">
+
+  <div>
+
+    <span class="eyebrow"
+      data-ar="✨ تعلّم بطريقتك"
+      data-en="✨ Learn your way">
+      ✨ تعلّم بطريقتك
+    </span>
+
+    <h1
+      data-ar="مو لازم تفهمها<br>من أول مرة، <span>خلّنا نفكّها.</span>"
+      data-en="You don't have to get it<br>the first time. <span>Let's break it down.</span>">
+
+      مو لازم تفهمها<br>
+      من أول مرة، <span>خلّنا نفكّها.</span>
+
+    </h1>
+
+    <p
+      data-ar="فكّها تساعدك تفهم المفاهيم الدراسية بأسلوب يناسبك، من شرح مبسّط إلى أمثلة واقعية وخطوات واضحة."
+      data-en="FAKKHA helps you understand study concepts in a way that suits you, from simple explanations to real-life examples and clear steps.">
+
+      فكّها تساعدك تفهم المفاهيم الدراسية بأسلوب يناسبك،
+      من شرح مبسّط إلى أمثلة واقعية وخطوات واضحة.
+
+    </p>
+
+    <div class="hero-buttons">
+
+      <a class="primary" href="input.html"
+         data-ar="جرّب فكّها ←"
+         data-en="Try FAKKHA →">
+        جرّب فكّها ←
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Previous AI design -->
+
+  <div class="visual">
+
+    <div class="circle"></div>
+
+    <div class="float-card float-one"
+      data-ar="💡 فهم أسهل"
+      data-en="💡 Easier learning">
+      💡 فهم أسهل
+    </div>
+
+    <div class="float-card float-two"
+      data-ar="🌱 خطوة بخطوة"
+      data-en="🌱 Step by step">
+      🌱 خطوة بخطوة
+    </div>
+
+    <div class="ai-card">
+
+      <div class="brain">🧠</div>
+
+      <h3
+        data-ar="خلّنا نفكّها!"
+        data-en="Let's break it down!">
+        خلّنا نفكّها!
+      </h3>
+
+      <p
+        data-ar="نفهمها خطوة بخطوة"
+        data-en="Understand it step by step">
+        نفهمها خطوة بخطوة
+      </p>
+
+      <div class="mini-lines">
+        <div class="mini-line"></div>
+        <div class="mini-line"></div>
+        <div class="mini-line"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Second section: Ready CTA -->
+
+<section class="container section">
+
+  <div class="cta">
+
+    <div>
+
+      <h2
+        data-ar="جاهز تفكّ مفهومك؟"
+        data-en="Ready to break down your concept?">
+        جاهز تفكّ مفهومك؟
+      </h2>
+
+      <p
+        data-ar="ابدأ الآن وخلي الفكرة أقرب وأسهل."
+        data-en="Start now and make your concept easier.">
+        ابدأ الآن وخلي الفكرة أقرب وأسهل.
+      </p>
+
+    </div>
+
+    <a class="primary" href="input.html"
+       data-ar="ابدأ الآن ←"
+       data-en="Start now →">
+      ابدأ الآن ←
+    </a>
+
+  </div>
+
+</section>
+
+<!-- How to use FAKKHA -->
+
+<section class="container section" id="how">
+
+  <div class="section-heading">
+
+    <h2
+      data-ar="كيف نستخدم فكّها؟"
+      data-en="How to use FAKKHA?">
+      كيف نستخدم فكّها؟
+    </h2>
+
+    <p
+      data-ar="ثلاث خطوات بسيطة وتبدأ الفكرة تتضح."
+      data-en="Three simple steps to make things clearer.">
+      ثلاث خطوات بسيطة وتبدأ الفكرة تتضح.
+    </p>
+
+  </div>
+
+  <div class="steps">
+
+    <article class="step">
+
+      <div class="step-num">1</div>
+
+      <h3
+        data-ar="اكتب المفهوم"
+        data-en="Enter the concept">
+        اكتب المفهوم
+      </h3>
+
+      <p
+        data-ar="اكتب الشيء اللي تحتاج تفهمه."
+        data-en="Write what you need help understanding.">
+        اكتب الشيء اللي تحتاج تفهمه.
+      </p>
+
+    </article>
+
+    <article class="step">
+
+      <div class="step-num">2</div>
+
+      <h3
+        data-ar="حدد مستواك"
+        data-en="Choose your level">
+        حدد مستواك
+      </h3>
+
+      <p
+        data-ar="اختَر مستوى الشرح والأسلوب اللي يناسبك."
+        data-en="Choose the explanation level and style that suits you.">
+        اختَر مستوى الشرح والأسلوب اللي يناسبك.
+      </p>
+
+    </article>
+
+    <article class="step">
+
+      <div class="step-num">3</div>
+
+      <h3
+        data-ar="ابدأ الفهم"
+        data-en="Start understanding">
+        ابدأ الفهم
+      </h3>
+
+      <p
+        data-ar="شاهد الشرح وارجع له وقت ما تحتاج."
+        data-en="Read the explanation and revisit it whenever you need.">
+        شاهد الشرح وارجع له وقت ما تحتاج.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+<!-- Features -->
+
+<section class="container section" id="features">
+
+  <div class="section-heading">
+
+    <h2
+      data-ar="التعلّم يصير أسهل مع فكّها"
+      data-en="Learning gets easier with FAKKHA">
+      التعلّم يصير أسهل مع فكّها
+    </h2>
+
+    <p
+      data-ar="نرتّب المفهوم ونقرّبه لك بدل ما يظل معقّد."
+      data-en="We organize concepts and make them easier to understand.">
+      نرتّب المفهوم ونقرّبه لك بدل ما يظل معقّد.
+    </p>
+
+  </div>
+
+  <div class="features">
+
+    <article class="feature">
+
+      <div class="feature-icon">💡</div>
+
+      <h3
+        data-ar="شرح مبسّط"
+        data-en="Simple explanations">
+        شرح مبسّط
+      </h3>
+
+      <p
+        data-ar="نفكّ المفاهيم الصعبة إلى كلام واضح وسهل."
+        data-en="Turn difficult concepts into clear, easy language.">
+        نفكّ المفاهيم الصعبة إلى كلام واضح وسهل.
+      </p>
+
+    </article>
+
+    <article class="feature">
+
+      <div class="feature-icon">🧩</div>
+
+      <h3
+        data-ar="على مستوى فهمك"
+        data-en="At your level">
+        على مستوى فهمك
+      </h3>
+
+      <p
+        data-ar="اختَر مستوى الشرح اللي يناسبك."
+        data-en="Choose the explanation level that suits you.">
+        اختَر مستوى الشرح اللي يناسبك.
+      </p>
+
+    </article>
+
+    <article class="feature">
+
+      <div class="feature-icon">🌱</div>
+
+      <h3
+        data-ar="أكثر من طريقة"
+        data-en="Different approaches">
+        أكثر من طريقة
+      </h3>
+
+      <p
+        data-ar="أمثلة واقعية أو شرح خطوة بخطوة أو تبسيط."
+        data-en="Real examples, step-by-step guidance, or simplification.">
+        أمثلة واقعية أو شرح خطوة بخطوة أو تبسيط.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- Footer -->
+
+<footer class="footer">
+
+  <div class="container footer-inner">
+
+    <span>فَكّها | FAKKHA</span>
+
+    <span
+      data-ar="مو لازم تفهمها من أول مرة، خلّنا نفكّها مع بعض."
+      data-en="You don't have to get it the first time. Let's break it down together.">
+      مو لازم تفهمها من أول مرة، خلّنا نفكّها مع بعض.
+    </span>
+
+  </div>
+
+</footer>
+
+<script>
+
+const langKey = "fakkha-language";
+
+function applyLanguage(lang) {
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.body.classList.toggle("english", lang === "en");
+
+  document.querySelectorAll("[data-ar][data-en]").forEach(el => {
+    el.innerHTML = el.dataset[lang];
+  });
+
+  document.getElementById("langToggle").textContent =
+    lang === "ar" ? "English" : "العربية";
+
+  localStorage.setItem(langKey, lang);
+}
+
+document.getElementById("langToggle").addEventListener("click", () => {
+
+  const newLanguage =
+    document.documentElement.lang === "ar" ? "en" : "ar";
+
+  applyLanguage(newLanguage);
+
+});
+
+applyLanguage(localStorage.getItem(langKey) || "ar");
+
+</script>
+
+</body>
+</html>
